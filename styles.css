@@ -34,30 +34,54 @@ body {
 
 /* Add a slight shadow and rounded corners to each section for depth */
 section {
-  background: #fff; /* White background for sections */
+  background: #f2f2f2f; /* White background for sections */
   border-radius: 12px; /* Rounded corners */
   box-shadow: 0 2px 8px rgba(46, 157, 247, 0.07); /* Soft blue shadow */
   margin: 24px 10px; /* Space between sections */
   padding: 24px 16px;
 }
 
+/* Header styles for even padding and smaller logo */
+.site-header {
+  background-color: #ffffff; /* Light gray background */
+  padding: 14px 20px;        /* Even padding on all sides */
+  margin-bottom: 0;          /* Remove margin below header */
+}
+
+/* Container for logo and donate button in header */
+.header-content {
+  display: flex;              /* Place logo and button in a row */
+  align-items: center;        /* Vertically center items */
+  justify-content: space-between; /* Logo left, button right */
+}
+
+.site-logo {
+  height: 24px;              /* Smaller logo */
+}
+
+/* Donate button in header: make it smaller for the top right */
+.header-donate {
+  padding: 6px 14px;          /* Smaller padding */
+  font-size: 0.95em;             /* Slightly smaller text */
+  margin-left: 16px;          /* Space between logo and button if needed */
+  margin-top: 0;       /* Remove extra top margin */
+}
+
 /* Hero Section Styles */
 .hero {
-  position: relative; /* Needed for overlay */
-  /* Set a background image that covers the whole section */
-  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');
-  background-size: cover;      /* Make the image cover the whole area */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat;
-  color: #fff;                 /* White text for contrast */
-  text-align: center;          /* Center the text */
-  padding: 60px 20px;          /* Add space above and below */
-  border-radius: 0 0 16px 16px; /* Only round bottom corners */
-
-  /* Add a dark overlay for better text readability */
-  /* This uses a simple linear-gradient overlay */
-  background-blend-mode: darken;
-  background-color: rgba(46, 157, 247, 0.45); /* Blue overlay */
+  /* Show the background image for the hero section */
+  background-image: url("img/Zimbabwe_2022_CG-7595.jpg");
+  background-size: cover;         /* Make the image cover the whole area */
+  background-position: center;    /* Center the image */
+  background-repeat: no-repeat;   /* Do not repeat the image */
+  color: #fff;                    /* White text for contrast */
+  text-align: center;             /* Center the text */
+  min-height: 400px;              /* Make the hero section taller */
+  height: 100vh;                  /* Make the hero section fill the whole screen */
+  margin-top: 0;                  /* Ensure no margin above hero */
+  margin-bottom: 0;               /* (optional) Ensure no margin below hero */
+  padding: 0;                     /* Remove default padding */
+  /* Removed overlay and blend mode for a clear image */
 }
 
 /* Make the headline bold and modern */
@@ -111,16 +135,15 @@ h2 {
 /* Donate Button Styles */
 .donate-button {
   display: inline-block;
-  background-color: #4FCB53; /* Green */
-  color: #fff;
+  background-color: #FFC907; 
+  color: #000000;
   padding: 14px 32px;
   text-decoration: none;
   border-radius: 6px;
   font-weight: bold;
   font-size: 1.1em;
-  margin-top: 18px;
   box-shadow: 0 2px 8px rgba(79, 203, 83, 0.10);
-  transition: background 0.3s, transform 0.2s;
+  transition: background 0.2s;
   border: none;
   cursor: pointer;
 }
@@ -128,7 +151,6 @@ h2 {
 /* Change button color when hovered */
 .donate-button:hover {
   background-color: #159A48; /* Dark Green */
-  transform: translateY(-2px) scale(1.04); /* Slight lift */
 }
 
 /* Add some spacing between sections */
