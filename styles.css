@@ -26,19 +26,17 @@ Fonts:
 /* Set up the main font and background color for the whole page */
 body {
   background-color: #f4f8fb; /* Soft light blue for a fresh look */
-  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
+  font-family: 'proxima-nova', sans-serif;
+  letter-spacing: 0.5px;
   margin: 0;
   padding: 0;
   color: #222;
+  margin-top: 60px; /* Add space for the fixed header (adjust if header height changes) */
 }
 
 /* Add a slight shadow and rounded corners to each section for depth */
 section {
   background: #f2f2f2f; /* White background for sections */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.07); /* Soft blue shadow */
-  margin: 24px 10px; /* Space between sections */
-  padding: 24px 16px;
 }
 
 /* Header styles for even padding and smaller logo */
@@ -46,6 +44,12 @@ section {
   background-color: #ffffff; /* Light gray background */
   padding: 14px 20px;        /* Even padding on all sides */
   margin-bottom: 0;          /* Remove margin below header */
+  position: fixed;           /* Keep header at the top */
+  top: 0;                    /* Stick to the top of the page */
+  left: 0;                   /* Stretch from the left edge */
+  width: 100%;               /* Make header full width */
+  z-index: 1000;             /* Make sure header is above other content */
+  box-sizing: border-box;    /* Include padding in width */
 }
 
 /* Container for logo and donate button in header */
@@ -74,30 +78,111 @@ section {
   background-size: cover;         /* Make the image cover the whole area */
   background-position: center;    /* Center the image */
   background-repeat: no-repeat;   /* Do not repeat the image */
-  color: #fff;                    /* White text for contrast */
-  text-align: center;             /* Center the text */
+  /* Use flex to align content to the left and center vertically */
+  display: flex;                  /* Use flexbox for layout */
+  align-items: center;            /* Center items vertically */
+  justify-content: flex-start;    /* Align items to the left */
   min-height: 400px;              /* Make the hero section taller */
   height: 100vh;                  /* Make the hero section fill the whole screen */
   margin-top: 0;                  /* Ensure no margin above hero */
   margin-bottom: 0;               /* (optional) Ensure no margin below hero */
   padding: 0;                     /* Remove default padding */
+  position: relative;             /* Needed for overlay positioning */
   /* Removed overlay and blend mode for a clear image */
+}
+
+/* Add a gradient overlay over the hero image */
+.hero::before {
+  content: ""; /* This creates an empty element for the overlay */
+  position: absolute; /* Position it over the hero section */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Gradient goes from black (left) to transparent (right) */
+  background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0));
+  z-index: 1; /* Place the overlay above the image but below the text */
+  pointer-events: none; /* Let clicks pass through */
+}
+
+/* Container for hero text to add left margin */
+.hero-text-container {
+  position: relative; /* Place above the overlay */
+  z-index: 2;         /* Higher than the overlay */
+  margin-left: 7vw; /* Add space from the left edge */
+  max-width: 550px; /* Limit width for better readability */
 }
 
 /* Make the headline bold and modern */
 .hero h1 {
-  font-size: 2.5em;
-  font-weight: bold;
+  font-size: 4em;
+  font-weight: normal;
+  font-family: "georgia", serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #FFC907;                  /* Primary Yellow */
   letter-spacing: 1px;
-  margin-bottom: 15px;
+  line-height: 1.0; /* Add space between lines for readability */
+  margin-bottom: 30px;
   text-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Soft shadow for readability */
 }
 
 /* Style the subheadline */
 .hero p {
-  font-size: 1.2em;
+  font-size: 1.05em;
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.6px;
+  line-height: 1.5;
   margin-top: 0;
+  margin-bottom: 30px;
+  color: #fff;                    /* White text for contrast */
   text-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+
+/* Container for the donate button and text inside the hero section */
+.hero-donate-block {
+  background-color: #fff;        /* White background for the block */
+  border-radius: 8px;            /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10); /* Soft shadow for depth */
+  /* Add padding: top, right, bottom, left */
+  padding: 10px 10px 10px 16px;  /* 10px top/bottom, 16px left/right */
+  margin-top: 30px;              /* Space above the block */
+  display: flex;                 /* Use flex to align items in a row */
+  justify-content: space-between;/* Space between text and button */
+  align-items: center;           /* Vertically center the text and button */
+  max-width: 350px;              /* Limit width so it's not too wide */
+  gap: 12px;                     /* Space between text and button */
+}
+
+/* Style for the text inside the hero donate block */
+.hero-donate-text {
+  font-size: 1.05em;
+  color: #000000;                /* Primary blue for accent */
+  font-weight: normal;
+  letter-spacing: 0.5px;
+}
+
+/* Make sure the donate button fits well inside the block */
+.hero-donate-block .donate-button {
+  margin: 0;                     /* Remove extra margin */
+  white-space: nowrap;           /* Prevent button text from wrapping */
+}
+
+/* Responsive: Make the donate block full width on small screens */
+@media (max-width: 600px) {
+  .hero-donate-block {
+    max-width: 100%;             /* Block takes full width */
+    padding: 12px 8px;           /* Less padding on small screens */
+    flex-direction: column;      /* Stack text and button vertically */
+    gap: 10px;                   /* Space between text and button */
+    align-items: stretch;        /* Stretch items to full width */
+    text-align: center;          /* Center text on small screens */
+  }
+  .hero-donate-block .donate-button {
+    width: 100%;                 /* Button takes full width */
+  }
 }
 
 /* Story Section Styles */
@@ -108,11 +193,25 @@ section {
   padding: 30px 20px;
 }
 
+/* Add padding to the impact story section for better spacing */
+.impact-story {
+  padding: 30px 20px;
+}
+
+/* Center the headline in the impact story section */
+.impact-story h2 {
+  text-align: center;
+}
+
 /* Add accent color to section headings */
 h2 {
-  color: #2E9DF7; /* Primary blue */
+  font-size: 2em;
+  color: #000000; 
   margin-top: 0;
-  font-weight: bold;
+  font-weight: normal;
+  font-family: "georgia", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Call-to-Action Section Styles */
@@ -132,16 +231,24 @@ h2 {
   box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
 }
 
+.story-image {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+}
+
 /* Donate Button Styles */
 .donate-button {
   display: inline-block;
   background-color: #FFC907; 
   color: #000000;
-  padding: 14px 32px;
+  padding: 10px 22px;
   text-decoration: none;
   border-radius: 6px;
-  font-weight: bold;
-  font-size: 1.1em;
+  font-style: normal;
+  font-size: 1em;
   box-shadow: 0 2px 8px rgba(79, 203, 83, 0.10);
   transition: background 0.2s;
   border: none;
@@ -150,13 +257,9 @@ h2 {
 
 /* Change button color when hovered */
 .donate-button:hover {
-  background-color: #159A48; /* Dark Green */
+  background-color: #ffd746; 
 }
 
-/* Add some spacing between sections */
-section {
-  margin-bottom: 20px;
-}
 
 /* 
   Media Queries for Responsive Design
