@@ -127,6 +127,12 @@ section {
   text-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Soft shadow for readability */
 }
 
+.hero h1:hover {
+  color: #ffd746; /* Slightly lighter yellow on hover */
+  font-size: 4.1em; /* Slightly larger on hover */
+  transition: color 0.3s ease, font-size 0.3s ease; /* Smooth transition for hover effect */ 
+}
+
 /* Style the subheadline */
 .hero p {
   font-size: 1.05em;
@@ -170,20 +176,7 @@ section {
   white-space: nowrap;           /* Prevent button text from wrapping */
 }
 
-/* Responsive: Make the donate block full width on small screens */
-@media (max-width: 600px) {
-  .hero-donate-block {
-    max-width: 100%;             /* Block takes full width */
-    padding: 12px 8px;           /* Less padding on small screens */
-    flex-direction: column;      /* Stack text and button vertically */
-    gap: 10px;                   /* Space between text and button */
-    align-items: stretch;        /* Stretch items to full width */
-    text-align: center;          /* Center text on small screens */
-  }
-  .hero-donate-block .donate-button {
-    width: 100%;                 /* Button takes full width */
-  }
-}
+
 
 /* Story Section Styles */
 .story {
@@ -206,29 +199,39 @@ section {
 /* Add accent color to section headings */
 h2 {
   font-size: 2em;
-  color: #000000; 
   margin-top: 0;
+  margin-bottom: 0;
   font-weight: normal;
   font-family: "georgia", serif;
   font-weight: 400;
   font-style: normal;
 }
 
+hr {
+    width: 30px;
+    height: 2px;
+    background-color: #000000;
+    display: inline-block;
+    border: 0;
+    margin: 0;
+}
+
 /* Call-to-Action Section Styles */
 .call-to-action {
-  background-color: #FFC907; /* Primary Yellow */
-  color: #222;
+  background-color: #003366;
+  color: #ffffff;
   text-align: center;
   padding: 30px 20px;
 }
 
-/* Style the impact story image */
+/* Style the impact story image to match the story image */
 .impact-image {
-  width: 100%;
-  max-width: 320px;
-  border-radius: 10px;
+  width: 350px;               /* Set a fixed width for the image */
+  max-width: 100%;            /* Make sure it doesn't overflow */
+  border-radius: 0px;         /* No rounded corners */
   margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10); /* Soft shadow */
+  display: block;
 }
 
 .story-image {
@@ -260,6 +263,12 @@ h2 {
   background-color: #ffd746; 
 }
 
+footer {
+  text-align: center;
+  padding: 5px;
+  background-color: #CBCCD1;
+  color: #000;
+}
 
 /* 
   Media Queries for Responsive Design
@@ -297,27 +306,89 @@ h2 {
     display: block; /* Stack items vertically */
     text-align: center;
   }
-
-  .impact-image {
-    width: 90%;    /* Make image take up most of the width */
-    max-width: 220px;
-  }
 }
 
 /* This media query applies styles when the screen is wider than 600px (like on tablets and computers) */
 @media (min-width: 601px) {
   /* Show image and text side by side in the impact story */
   .impact-content {
-    display: flex;           /* Place items in a row */
-    align-items: center;     /* Vertically center items */
-    justify-content: center; /* Center the whole group */
-    gap: 28px;               /* Space between image and text */
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
+    display: flex;              /* Put image and text in a row */
+    align-items: center;        /* Vertically center items */
+    justify-content: center;    /* Center the whole group */
+    gap: 48px;                  /* Space between image and text */
+    max-width: 800px;           /* Limit width */
+    margin: 0 auto;             /* Center the content */
+    text-align: left;           /* Align text to the left */
   }
 
-  .impact-image {
-    width: 300px;
+/* Right side: add spacing for the impact text block */
+.impact-text {
+  flex: 1;                    /* Take up remaining space */
+}
+
+/* Make the heading left-aligned in the impact section on large screens */
+.impact-text h2 {
+  text-align: left;
+  margin-top: 0;
+}
+
+/* Responsive: Stack image and text on small screens */
+@media (max-width: 600px) {
+  .impact-content {
+    display: block;           /* Stack items vertically */
+    text-align: center;       /* Center text and image */
+  }
+  
+  .impact-text h2 {
+    text-align: center;       /* Center heading on small screens */
+  }
+}
+
+/* Place the story image and text side by side on larger screens */
+.story-content {
+  display: flex;              /* Put image and text in a row */
+  align-items: center;        /* Vertically center items */
+  justify-content: center;    /* Center the whole group */
+  gap: 48px;                  /* Space between image and text */
+  max-width: 800px;           /* Limit width */
+  margin: 0 auto;             /* Center the content */
+  text-align: left;           /* Align text to the left */
+}
+
+/* Right side: add spacing for the text block */
+.story-text {
+  flex: 1;                    /* Take up remaining space */
+}
+
+/* Left side: style for the story image */
+.story-image {
+  width: 350px;               /* Set a fixed width for the image */
+  max-width: 100%;            /* Make sure it doesn't overflow */
+  border-radius: 0px;        /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10); /* Soft shadow */
+}
+
+/* Make the heading left-aligned in the story section on large screens */
+.story .story-text h2 {
+  text-align: left;
+  margin-top: 0;
+}
+
+/* Responsive: Stack image and text on small screens */
+@media (max-width: 600px) {
+  .story-content {
+    display: block;           /* Stack items vertically */
+    text-align: center;       /* Center text and image */
+  }
+  .story-image {
+    width: 90%;               /* Make image take up most of the width */
+    margin-bottom: 14px;      /* Space below image */
+  }
+   .impact-image {
+    width: 90%;               /* Make image take up most of the width */
+    margin-bottom: 14px;      /* Space below image */
+  }
+  .story .story-text h2 {
+    text-align: center;       /* Center heading on small screens */
   }
 }
